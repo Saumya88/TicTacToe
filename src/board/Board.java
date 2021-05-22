@@ -19,4 +19,7 @@ public class Board {
 			System.out.println();
 		}
 	}
+	public void setValue(int row, int col, char symbol) {
+		board[row][col] = symbol;
+	}
 }
