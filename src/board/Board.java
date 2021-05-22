@@ -27,9 +27,9 @@ public class Board
 			System.out.println();
 		}
 	}
-	public int getPosition(String playerType) // method to get the position from user or computer 
+	public int getPosition(boolean player) // method to get the position from user or computer 
 	{
-		if(playerType=="User") // if the player type is user the position must be entered by the user
+		if(player) // if the player type is user the position must be entered by the user
 		{
 			int position;
 			Scanner sc=new Scanner(System.in);
@@ -47,14 +47,16 @@ public class Board
 			return position + 1;
 			
 		}
-				
+
 	}
 	
 	public void setPosition() // method to the set the position on the board
 	{
 		int position;
-		String player="User";
-		char symbol='X';
+		//Since Strings are immutable, we can use Boolean values
+		// where true represents User and false represents Computer
+		boolean player = true;
+		char symbol;
 		
 		System.out.println("\n \n ***************Game starts************ \n \n");
 		showBoard();
@@ -63,14 +65,15 @@ public class Board
 		while(true)
 		{
 			// assigning the symbol on the basis of player type
-			if(player=="User")
+			// if player is User, symbol='X'
+			// if player is Computer, symbol='O'
+			if(player)
 			{
-				symbol='X';
-				
+				symbol = 'X';
 			}
-			if(player=="Computer")
+			else
 			{
-				symbol='O';
+				symbol = 'O';
 			}
 			position=getPosition(player);// calling the method to get the position to be marked
 			switch(position)
@@ -99,17 +102,8 @@ public class Board
 			}
 			showBoard();
 			
-			// trying to change the player type from user to computer and vice versa
-			// not working 
-			// possible reason: Strings are immutable in java
-			if(player.compareTo("User")==0)
-			{
-				player="Computer";
-			}
-			if(player.compareTo("Computer")==0)
-			{
-				player="User";
-			}
+			// change the player type from user to computer and vice versa
+			player = player ? false : true;
 		
 		}
 	}
