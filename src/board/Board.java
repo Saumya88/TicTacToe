@@ -2,29 +2,31 @@ package board;
 import java.util.*;
 public class Board 
 {
-	private char[][] board; //array to store the positions of TicTacToe Board
+	private char[] board; //array to store the positions of TicTacToe Board
 	public Board() //class constructor to initialize the board
 	{
-		board = new char[3][3];
-		for(int i=0;i<3;i++) 
+		board = new char[9];
+		for(int i=0;i<9;i++) 
 		{
-			for(int j=0;j<3;j++) 
-			{
-				board[i][j] = '-';
-			}
+			board[i] = '-';
 		}
 	}
 	public void showBoard() //method to print the board on screen
 	{
 		System.out.println("             1  2  3"); // printing the column number
-		for(int i=0;i<3;i++) 
+		for(int i=0;i<9;i++) 
 		{
-			System.out.print("          " + (i+1) + "  ");// printing the row number
-			for(int j=0;j<3;j++) 
+			if(i == 0 || i == 3 || i == 6) // printing the initial positions of rows
 			{
-				System.out.print(board[i][j] + "  ");
+				System.out.print("          " + (i+1) + "  ");
 			}
-			System.out.println();
+
+			System.out.print(board[i] + "  ");
+
+			if(i == 2 || i == 5 || i == 8)
+			{
+				System.out.println();
+			}
 		}
 	}
 	public int getPosition(boolean player) // method to get the position from user or computer 
@@ -35,8 +37,7 @@ public class Board
 			Scanner sc=new Scanner(System.in);
 			System.out.println("Enter the position you want to mark");
 			position=sc.nextInt();
-			System.out.println(position);
-			return position;
+			return position-1;
 		}
 		else //if the player type is computer then random numbers must be generated as position
 		{
@@ -44,7 +45,7 @@ public class Board
 			Random random = new Random();   
 			// Generates random integers 0 to 8 
 			position = random.nextInt(9);  
-			return position + 1;
+			return position;
 			
 		}
 
@@ -76,30 +77,7 @@ public class Board
 				symbol = 'O';
 			}
 			position=getPosition(player);// calling the method to get the position to be marked
-			switch(position)
-			{
-				case 1: board[0][0]=symbol;
-				break;
-				case 2: board[0][1]=symbol;
-				break;
-				case 3: board[0][2]=symbol;
-				break;
-				case 4: board[1][0]=symbol;
-				break;
-				case 5: board[1][1]=symbol;
-				break;
-				case 6: board[1][2]=symbol;
-				break;
-				case 7: board[2][0]=symbol;
-				break;
-				case 8: board[2][1]=symbol;
-				break;
-				case 9: board[2][2]=symbol;
-				break;
-				default:
-				break;
-			
-			}
+			board[position] = symbol; // setting symbol at position
 			showBoard();
 			
 			// change the player type from user to computer and vice versa
