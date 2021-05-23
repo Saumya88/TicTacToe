@@ -2,24 +2,25 @@ package board;
 import java.util.*;
 public class Board 
 {
-	private char[][] board; //array to store the positions of TicTacToe Board
+	private char[] board; //array to store the positions of TicTacToe Board
 	public Board(){ //class constructor to initialize the board
-		board = new char[3][3];
+		board = new char[9];
 		for(int i=0;i<3;i++) {
 			for(int j=0;j<3;j++) 
-				board[i][j] = '-';
+				board[i] = '-';
 		}
 	}
 	public void showBoard() //method to print the board on screen
 	{
 		System.out.println("             1  2  3"); // printing the column number
-		for(int i=0;i<3;i++) 
+		for(int i=0;i<9;i++) 
 		{
-			System.out.print("          " + (i+1) + "  ");// printing the row number
-			for(int j=0;j<3;j++) 
-			{System.out.print(board[i][j] + "  ");}
-			System.out.println();
-		}
+			if(i==0||i==3||i==6)
+				System.out.print("          " + (i+1) + "  ");
+			System.out.print(board[i] + "  ");
+			if(i == 2 || i == 5 || i == 8)
+				System.out.println();
+		}	
 	}
 	public int getPosition(boolean player) { // method to get the position from user or computer 
 		if(player){// if the player type is user the position must be entered by the user
@@ -56,23 +57,23 @@ public class Board
 				symbol = 'O';
 			position=getPosition(player);// calling the method to get the position to be marked
 			switch(position){
-				case 1: board[0][0]=symbol;
+				case 1: board[0]=symbol;
 					break;
-				case 2: board[0][1]=symbol;
+				case 2: board[1]=symbol;
 					break;
-				case 3: board[0][2]=symbol;
+				case 3: board[2]=symbol;
 					break;
-				case 4: board[1][0]=symbol;
+				case 4: board[3]=symbol;
 					break;
-				case 5: board[1][1]=symbol;
+				case 5: board[4]=symbol;
 					break;
-				case 6: board[1][2]=symbol;
+				case 6: board[5]=symbol;
 					break;
-				case 7: board[2][0]=symbol;
+				case 7: board[6]=symbol;
 					break;
-				case 8: board[2][1]=symbol;
+				case 8: board[7]=symbol;
 					break;
-				case 9: board[2][2]=symbol;
+				case 9: board[8]=symbol;
 					break;
 				default:
 					break;
