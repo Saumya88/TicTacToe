@@ -5,10 +5,8 @@ public class Board
 	private char[] board; //array to store the positions of TicTacToe Board
 	public Board(){ //class constructor to initialize the board
 		board = new char[9];
-		for(int i=0;i<3;i++) {
-			for(int j=0;j<3;j++) 
-				board[i] = '-';
-		}
+		for(int i=0;i<9;i++) 
+			board[i] = '-';
 	}
 	public void showBoard() //method to print the board on screen
 	{
@@ -49,41 +47,28 @@ public class Board
 		System.out.println("\n \n ***************Game starts************ \n \n");
 		showBoard();
 		System.out.println("\nUser will go first \n");
-		while(true){
-			// assigning the symbol on the basis of player type if player is User, symbol='X'if player is Computer, symbol='O'
+		while(true)
+		{
+			// assigning the symbol on the basis of player type
+			// if player is User, symbol='X'
+			// if player is Computer, symbol='O'
 			if(player)
+			{
 				symbol = 'X';
-			else
-				symbol = 'O';
-			position=getPosition(player);// calling the method to get the position to be marked
-			switch(position){
-				case 1: board[0]=symbol;
-					break;
-				case 2: board[1]=symbol;
-					break;
-				case 3: board[2]=symbol;
-					break;
-				case 4: board[3]=symbol;
-					break;
-				case 5: board[4]=symbol;
-					break;
-				case 6: board[5]=symbol;
-					break;
-				case 7: board[6]=symbol;
-					break;
-				case 8: board[7]=symbol;
-					break;
-				case 9: board[8]=symbol;
-					break;
-				default:
-					break;
 			}
-			System.out.println("\n"); //printing lines before displaying board
+			else
+			{
+				symbol = 'O';
+			}
+			position=getPosition(player);// calling the method to get the position to be marked
+			board[position-1] = symbol; // setting symbol at position
 			showBoard();
+			
 			// change the player type from user to computer and vice versa
 			player = player ? false : true;
 		
 		}
+		
 	}
 }
 
